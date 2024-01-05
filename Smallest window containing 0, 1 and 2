@@ -1,0 +1,19 @@
+int i=0,j=0,ans=INT_MAX;
+        
+        unordered_map<int,int>mpp;
+        while(j<s.size()){
+            mpp[s[j]]++;
+            if(mpp.size()==3){
+                while(mpp[s[i]]>1){
+                    mpp[s[i]]--;
+                    i++;
+                }
+                ans=min(ans,(j-i+1));
+                if(ans==3)return ans;
+            }
+            j++;
+        }
+        if(ans==INT_MAX)return -1;
+        return ans;
+        
+    }
