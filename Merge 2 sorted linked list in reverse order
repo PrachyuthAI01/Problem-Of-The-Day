@@ -1,0 +1,59 @@
+
+class Solution {
+public:
+    struct Node* mergeResult(Node* node1, Node* node2) {
+        Node* temp1 = node1;
+        Node* temp2 = node2;
+        Node* t = new Node;
+        t->data = 1;
+        t->next = nullptr;
+        Node* x = t;
+
+        while (temp1 != nullptr || temp2 != nullptr) {
+            Node* newnode = new Node; 
+            newnode->next = nullptr;
+
+            if (temp1 != nullptr && (temp2 == nullptr || temp1->data <= temp2->data)) {
+                newnode->data = temp1->data;
+                temp1 = temp1->next;
+            } else {
+                newnode->data = temp2->data;
+                temp2 = temp2->next;
+            }
+
+            t->next = newnode;
+            t = t->next;
+        }
+
+        
+        while (temp1 != nullptr) {
+            Node* newnode = new Node;
+            newnode->data = temp1->data;
+            newnode->next = nullptr;
+            t->next = newnode;
+            t = t->next;
+            temp1 = temp1->next;
+        }
+
+        while (temp2 != nullptr) {
+            Node* newnode = new Node;
+            newnode->data = temp2->data;
+            newnode->next = nullptr;
+            t->next = newnode;
+            t = t->next;
+            temp2 = temp2->next;
+        }
+
+        Node *a=nullptr;
+        Node *temp;
+        temp=x->next;
+        while (temp) {
+            Node* newnode = new Node;
+            newnode->data=temp->data;
+            newnode->next = a;
+            a = newnode;
+            temp = temp->next;
+        }
+        return a;
+    }
+};
