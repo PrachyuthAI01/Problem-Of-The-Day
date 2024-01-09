@@ -1,0 +1,9 @@
+d=[]
+        n=len(txt)
+        for i in range(len(txt)):
+            if(txt[i]!=pat[0]):continue
+            else:
+                s=txt[i:i+len(pat)]
+                if(s==pat):
+                    d.append(i+1)
+        return d
